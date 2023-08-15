@@ -1,6 +1,8 @@
 
 import { Inter } from 'next/font/google'
 import { useState } from "react"
+import Head from 'next/head'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,15 +34,15 @@ export default function Home() {
   }
   return (
     <>
-      <Head />
-      <body className="flex flex-col min-h-screen">
+      <Hhead />
+      <div className="flex flex-col min-h-screen">
         <Header />
         <main className={`flex flex-col items-center justify-between p-20 ${inter.className}`}>
           <Form handler={submitHandler} />
           <h1 className='mt-10 text-2xl font-semibold text-gray-500'>{json}</h1>
         </main>
         <Footer />
-      </body >
+      </div >
 
     </>
 
@@ -48,11 +50,11 @@ export default function Home() {
 
 
 
-  function Head() {
+  function Hhead() {
     return (
-      <head>
+      <Head>
         <title>Home</title>
-      </head>
+      </Head>
 
     )
   }
