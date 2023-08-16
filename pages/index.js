@@ -2,9 +2,7 @@
 import { Inter } from 'next/font/google'
 import { useState } from "react"
 import Head from 'next/head'
-import { hours,reports } from "../data"
 import ReportTable from '@/components/ReportTable'
-
 
 
 
@@ -40,22 +38,6 @@ export default function Home() {
     await setMaximum(event.target.Maximum.value);
     await setAverage(event.target.Average.value);
     all()
-  }
-
-  const [cookieData, setCookieData] = useState([]);
-
-  function createCookieStand(e) {
-    e.preventDefault();
-
-    const locationData = {
-      location: e.target.location.value,
-      min: e.target.min.value,
-      max: e.target.max.value,
-      avg: e.target.avg.value,
-      id: cookieData.length
-    }
-
-    setCookieData([...cookieData, locationData]);
   }
   return (
     <>
