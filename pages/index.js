@@ -2,9 +2,14 @@
 import { Inter } from 'next/font/google'
 import { useState } from "react"
 import Head from 'next/head'
+import { hours,reports } from "../data"
+import ReportTable from '@/components/ReportTable'
+
+
 
 
 const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
   const [location, setLocation ] = useState('Cookie Stand Admin ');
@@ -23,6 +28,10 @@ export default function Home() {
     await console.log(dataToSave)
     setJson(JSON.stringify(dataToSave))
   }
+ 
+
+ 
+
 
   async function submitHandler(event){
     event.preventDefault();
@@ -32,6 +41,22 @@ export default function Home() {
     await setAverage(event.target.Average.value);
     all()
   }
+
+  const [cookieData, setCookieData] = useState([]);
+
+  function createCookieStand(e) {
+    e.preventDefault();
+
+    const locationData = {
+      location: e.target.location.value,
+      min: e.target.min.value,
+      max: e.target.max.value,
+      avg: e.target.avg.value,
+      id: cookieData.length
+    }
+
+    setCookieData([...cookieData, locationData]);
+  }
   return (
     <>
       <Hhead />
@@ -40,6 +65,8 @@ export default function Home() {
         <main className={`flex flex-col items-center justify-between p-20 ${inter.className}`}>
           <Form handler={submitHandler} />
           <h1 className='mt-10 text-2xl font-semibold text-gray-500'>{json}</h1>
+          <ReportTable json={json} />
+            
         </main>
         <Footer />
       </div >
@@ -149,6 +176,8 @@ export default function Home() {
       </div>
     )
   }
+
+
 
   function Footer() {
     return (
