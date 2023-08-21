@@ -1,12 +1,19 @@
 
 
-export default function Header() {
-    return (
-      <header className="flex items-center justify-between p-4 bg-green-500 text-gray-50">
+import Link from 'next/link'
 
-        <h1 className="text-4xl">Cookie Stand Admin</h1>
+const header = () => {
+  return (
+    <header
+      className='flex justify-between p-4'
+      style={{ backgroundColor: '#15B981' }}
+    >
+      <p className='text-3xl'>Cookie Stand Admin</p>
+      <Link href='#'>
+        Home
+      </Link>
+    </header>
+  )
+}
 
-      </header>
-
-    )
-  }
+export default header

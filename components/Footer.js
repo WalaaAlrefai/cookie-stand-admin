@@ -1,11 +1,10 @@
 
+const Footer = ({ data }) => {
+  return (
+    <footer className='p-4' style={{ backgroundColor: '#15B981' }}>
+      <span>{`${data ? data.length : 0} locations world wild`}</span>
+    </footer>
+  )
+}
 
-export default function Footer(props) {
-    return (
-      <footer className="p-4 mt-8 bg-green-500 text-gray-50" >
-        <>{props.data.length} </>
-        Locations World Wide
-      </footer>
-
-    )
-  }
+export default Footer

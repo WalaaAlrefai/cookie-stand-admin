@@ -1,43 +1,38 @@
-import {hours} from '@/data'
-
-import React from 'react';
-
-const CreateForm = ({data}) => {
-
+const CreateForm = ({CreateLocation}) => {
+  
     return (
-       <>
-       { data.length > 0 ?(
-        
-       <table className='mx-auto my-8 text-xl text-center bg-green-300 w-900px'>
-        <thead>
-            <tr key="">
-                <th className='border border-black center '>Location</th>
-                {hours.map(obj =>(
-                    <th className='border border-black center '>{obj}</th>
-                ))}
-                <th className='border border-black center '>Totals</th>
-
-            </tr>
-        </thead>
-        {/* table body */}
-        <tbody>
-            {data.map(obj =>(
-                <tr>
-                    <td className='border border-black center '>{obj.Location}</td>
-                    {obj.hourly_sales.map(x =>(
-                       <td className='border border-black center '>{x}</td>
-                    ))}
-                    
-                    <td className='border border-black center '>{obj.Average}</td>
-
-                </tr>
-            ))}
-        </tbody>
-       </table>
-       ) : <h2 className='mt-10 text-2xl font-semibold text-gray-500'>No Cookie Stands Available</h2>
-       }
-       </>
-    );
-}
-
-export default CreateForm;
+      <>
+        <form
+          className='p-2 mx-auto my-10 rounded-md'
+          style={{ backgroundColor: '#6FE6B7' , width:1000}}
+          onSubmit={CreateLocation}
+        >
+          <h1 className='my-6 text-2xl text-center'>Create Cookie Stand</h1>
+          <div className='flex'>
+            <label className='mx-1'>Location</label>
+            <input name='location' className='flex-auto rounded-br-md' />
+          </div>
+          <div className='flex mx-auto my-5 text-sm'>
+            <div className='flex-col w-1/2 text-center'>
+              Minimum Customers per hour
+              <input type='number' name='min' className='rounded-br-md' />
+            </div>
+            <div className='flex-col w-1/2 text-center'>
+              Maximum Customers per hour
+              <input type='number' name='max' className='rounded-br-md' />
+            </div>
+            <div className='flex-col w-1/2 text-center'>
+              Average Cookies per Sale
+              <input type='number'  step="any" name='avg' className='rounded-br-md' />
+            </div>
+            <button className='w-2/6' style={{ backgroundColor: '#15B981' }}>
+              Create
+            </button>
+          </div>
+        </form>
+  
+      </>
+    )
+  }
+  
+  export default CreateForm
