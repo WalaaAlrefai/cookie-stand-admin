@@ -1,9 +1,6 @@
-import axios from 'axios'
 import jwt from 'jsonwebtoken'
 import { createContext, useContext, useState } from 'react'
 
-const baseUrl = process.env.NEXT_PUBLIC_AUTH_URL
-const tokenUrl = baseUrl
 
 const AuthContext = createContext()
 
@@ -16,9 +13,11 @@ export function useAuth() {
   return auth
 }
 
+const baseUrl =process.env.NEXT_PUBLIC_URL
+
 export function AuthProvider(props) {
   const [state, setState] = useState({
-    tokens: null,
+    token: null,
     user: null,
     login,
     logout
@@ -32,7 +31,7 @@ export function AuthProvider(props) {
         headers :{"Content-Type": "application/json"}
 
 }
-    const response = await fetch(url,options )
+    const response = await fetch(url,options)
     const data = await response.json()
         console.log(data)
     
@@ -40,7 +39,7 @@ export function AuthProvider(props) {
     console.log(decodedAccess)
 
     const newState = {
-      tokens: data,
+      token: data,
       user: {
         username: decodedAccess.username,
         email: decodedAccess.email,
@@ -53,7 +52,7 @@ export function AuthProvider(props) {
 
   function logout() {
     const newState = {
-      tokens: null,
+      token: null,
       user: null
     }
     setState((prevState) => ({ ...prevState, ...newState }))
@@ -63,3 +62,5 @@ export function AuthProvider(props) {
     <AuthContext.Provider value={state}>{props.children}</AuthContext.Provider>
   )
 }
+
+
